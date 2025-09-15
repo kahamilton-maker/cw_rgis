@@ -17,6 +17,7 @@ mtcars_cyl <- filter(df_mtcars, cyl == 6)
 # Use `%in%` to filter the `df_mtcars` dataset for these two `gear` values.
 # Assign to: `mtcars_g35`
 
+filter(gear %in% c(3,5))
 mtcars_g35 <- filter(gear %in% c(3,5))
 # 3. Filter rows where miles per gallon (`mpg`) is greater than 25
 # Create a subset of `df_mtcars` where `mpg > 25`.
@@ -44,14 +45,16 @@ mtcars_hp
 # Use `desc()` inside `arrange()`.
 # Assign to: `mtcars_qsec`
 
-mtcars_qsec <- df-mtcars %>% 
+mtcars_qsec <- df_mtcars %>% 
   arrange(desc(qsec))
+mtcars_qsec
 # 7. Exclude the `drat` column
 # Use `select()` with `-` (minus sign) to remove the column.
 # Assign to: `mtcars_no_drat`
 
 mtcars_no_dart <- df_mtcars %>% 
-  select(-draft)
+  select(-drat)
+mtcars_no_dart
 # 8. Add a new column `ptw` that equals the ratio of horsepower (`hp`) to weight (`wt`) (`hp / wt`)
 # Use `mutate()` to add the new column.
 # Assign to: `mtcars_with_ptw`
@@ -61,7 +64,7 @@ mtcars_with_ptw <- mutate(df_mtcars,
 mtcars_with_ptw
 # 9. Identify the car `model` with the highest `ptw` among cars with six cylinders (`cyl == 6`).
 # Hint: Use `mtcars_with_ptw` and a chain of `filter()` and `arrange()` with `%>%`.
-# Write the car model here: Merc 280
+# Write the car model here: Ferrari Dino
 
 mtcars_with_ptw %>% 
   filter(cyl == 6) %>% 
@@ -78,6 +81,7 @@ mtcars_mpg_by_gear <- df_mtcars %>%
   group_by(gear) %>% 
   summarise( min_mpg = min(mpg),
              max_mpg = max(mpg))
+mtcars_mpg_by_gear
 # ggplot ------------------------------------------------------------------
 
 # Visualization in R (using `iris` dataset)
@@ -124,17 +128,17 @@ colnames(PlantGrowth)
 # Assign to: `g_bplot1`
 # Create a boxplot of `weight` by `group`, filling boxes by `group`.
 
-g_bplot1 <- iris %>% 
+g_bplot1 <- PlantGrowth %>% 
   ggplot(aes(x = group,
-             y = weighted,
+             y = weight,
              fill = group)) +
   geom_boxplot()
-         
+g_bplot1        
 # 15. Boxplot + scatter plot of `weight` by `group`
 # Assign to: `g_bplot2`
 # Create a boxplot of `weight` by `group`, then overlay points showing individual observations.
 
-g_bplot2 <- iris %>% 
+g_bplot2 <- PlantGrowth %>% 
   ggplot(aes( x = group, y =weight)) +
   geom_boxplot()
-
+g_bplot2
